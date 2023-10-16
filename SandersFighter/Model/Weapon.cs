@@ -10,7 +10,9 @@ namespace SandersFighter.Model;
 
 internal class Weapon
 {
-    public Weapon(string name, int damage, ConditionInflictor inflictor)
+    internal static Weapon Fist = new("Fist", 4, null);
+
+    public Weapon(string name, int damage, ConditionInflictor? inflictor)
     {
         Name = name;
         Damage = damage;
@@ -19,5 +21,5 @@ internal class Weapon
 
     public string Name { get; set; }
     public int Damage { get; set; }
-    public ConditionInflictor Inflictor { get; set; }
+    public ConditionInflictor? Inflictor { get; set; }
 }
