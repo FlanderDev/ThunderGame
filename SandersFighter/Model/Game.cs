@@ -22,8 +22,8 @@ internal class Game
         {
             var fightingTurn = new Turn(++_turnCounter);
             Turns.Add(fightingTurn);
-            fightingTurn.CombatLog.AddRange(p1.Attack(p2));
-            fightingTurn.CombatLog.AddRange(p2.Attack(p1));
+            fightingTurn.CombatLog.AddRange(p1.DoTurn(p2));
+            fightingTurn.CombatLog.AddRange(p2.DoTurn(p1));
         }
 
         var winner = Players.MaxBy(p => p.HitPoints) ?? throw new Exception("Uwu, Felix made an upsi.");

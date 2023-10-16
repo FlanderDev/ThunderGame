@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,15 @@ internal class Player
     public Weapon Weapon { get; set; } = Weapon.Fist;
     public List<Condition> Conditions { get; set; } = new();
 
-    public List<string> Attack(Player target)
+    public List<string> DoTurn(Player target)
+    {
+        var combatLog = Attack(target);
+
+        Actions = 1;
+        return combatLog;
+    }
+
+    private List<string> Attack(Player target)
     {
         var combatLog = new List<string>();
 
@@ -37,8 +46,10 @@ internal class Player
             return combatLog;
         }
 
-        target.HitPoints -= Weapon.Damage;
-        combatLog.Add($"{Name} has dealt {Weapon.Damage} damage with his {Weapon.Name} to {target.Name}, which has {target.HitPoints} left.");
+        var dmg = Weapon.RollDamage();
+        target.HitPoints -= dmg;
+
+        combatLog.Add($"{Name} has dealt {dmg} damage with his {Weapon.Name} to {target.Name}, which has {target.HitPoints} left.");
 
         if (Weapon.Inflictor?.Condition.RollExecuteEffect(target) ?? false)
             combatLog.Add($"{Name} used {Weapon.Name} to {Weapon.Inflictor.Condition.Name} {target.Name}.");

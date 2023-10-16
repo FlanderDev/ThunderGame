@@ -17,7 +17,7 @@ internal class Program
         var stunLogic = (Player player) => { player.Actions = 0; };
         var condition = new Condition("Stun", 20, stunLogic);
         var inflictor = new ConditionInflictor(0, condition);
-        heinrich.Weapon = new Weapon("Mace", 10, inflictor);
+        heinrich.Weapon = new Weapon("Mace", (2, 10), inflictor);
 
 
         game.RunGame(); //Run the game.
@@ -37,6 +37,6 @@ internal class Program
     private static void Print(string text)
     {
         Console.WriteLine(text);
-        Thread.Sleep(1000);
+        Thread.Sleep(100);
     }
 }
