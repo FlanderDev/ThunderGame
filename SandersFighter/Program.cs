@@ -9,7 +9,7 @@ internal class Program
         //Create game and add players.
         var game = new Game();
         var heinrich = new Player("Heinrich");
-        var dude = new Player("Dude");
+        var dude = new Player("KekW");
         game.Players.Add(heinrich);
         game.Players.Add(dude);
 
